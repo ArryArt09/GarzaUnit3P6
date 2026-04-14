@@ -70,7 +70,8 @@ public class PlayerController : MonoBehaviour
             jumpCount = jumpCount - jumpLess;
             playerAnim.SetTrigger("Jump_trig");
             dirtParticle.Stop();
-            playerAudio.PlayOneShot(jumpSound, 1.0f);        }
+            playerAudio.PlayOneShot(jumpSound, 1.0f);        
+        }
 
         if (jumpCount == 0)
         {
