@@ -865,7 +865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   canJump: 1
-  floatForce: 50
+  lowPoint: 10
+  floatForce: 10
   gravityModifier: 1.5
   explosionParticle: {fileID: 1171260740}
   fireworksParticle: {fileID: 66121944}

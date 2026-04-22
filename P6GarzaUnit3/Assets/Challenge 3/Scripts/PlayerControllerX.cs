@@ -6,6 +6,8 @@ public class PlayerControllerX : MonoBehaviour
 {
     public bool gameOver = false;
     public bool canJump = true;
+    private bool lowEnough = false;
+    public float lowPoint = 0.5f;
 
     public float floatForce = 10;
     public float gravityModifier = 1.5f;
@@ -22,6 +24,7 @@ public class PlayerControllerX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
 
@@ -34,14 +37,24 @@ public class PlayerControllerX : MonoBehaviour
     void Update()
     {
         // While space is pressed and player is low enough, float up
-        if (Input.GetKeyDown(KeyCode.Space) && canJump && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && lowEnough)
         {
             playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
+            lowEnough = false;
         }
 
         if (gameOver)
         {
             canJump = false;
+        }
+
+        if (transform.position.y < lowPoint)
+        {
+            lowEnough = true;
+        }
+        else
+        {
+            lowEnough = false;
         }
     }
 
